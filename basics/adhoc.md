@@ -1,4 +1,4 @@
-# Ansible ad-hoc command
+# Ansible: ad-hoc command
 
 [Documentation](https://docs.ansible.com/ansible/latest/user_guide/intro_adhoc.html)
 
