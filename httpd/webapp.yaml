@@ -1,0 +1,31 @@
+---
+- hosts: web 
+  tasks:
+  - name: Install httpd server
+    yum:
+      name: httpd
+      state: present
+    become: yes
+
+  - name: index.html replace
+    copy:
+      src: files/index.html
+      dest: /var/www/html/
+    become: yes
+
+  - name:  SELinux network port
+    seport:
+      ports: 80
+      proto: tcp
+      setype:  http_port_t
+      state: present
+    become: yes
+    notify:
+      - restart httpd
+
+  handlers:
+    - name: restart httpd
+      service:
+        name: httpd
+        state: restarted
+
