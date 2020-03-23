@@ -1,6 +1,6 @@
 # Ansible ad-hoc command
 
-[Documentation] (https://docs.ansible.com/ansible/latest/user_guide/intro_adhoc.html)
+[Documentation](https://docs.ansible.com/ansible/latest/user_guide/intro_adhoc.html)
 
 An Ansible ad-hoc command uses the /usr/bin/ansible command-line tool to automate a 
 single task on one or more managed nodes. Ad-hoc commands are quick and easy.
