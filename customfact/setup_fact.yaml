@@ -1,0 +1,29 @@
+---
+- name: Install remote facts
+  hosts: web
+  become: yes
+  vars:
+    remote_dir: /etc/ansible/facts.d
+    facts_file: custom.fact
+  tasks:
+    - name: Ansible check directory.
+      stat:
+        path: "{{ remote_dir }}"
+      register: my_folder
+    
+    - name: "Echo if directory already existed"
+      debug:
+        msg: "the {{ remote_dir }} directory is already existed"
+      when: my_folder.stat.exists
+
+    - name: Create the remote directory
+      file:
+        state: directory
+        recurse: yes
+        path: "{{ remote_dir }}"
+      when: my_folder.stat.exists == false
+
+    - name: Install the new facts
+      copy:
+        src: "{{ facts_file }}"
+        dest: "{{ remote_dir }}"

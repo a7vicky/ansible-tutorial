@@ -1,0 +1,14 @@
+---
+- name: Install and start the httpd server based on custom facts
+  become: yes
+  hosts: web
+  tasks:
+    - name: install httpd server
+      yum:
+        name: "{{ ansible_local.custom.general.package }}"
+        state: present
+    
+    - name: Start the service
+      service:
+        name: "{{ ansible_local.custom.general.service }}"
+        state: "{{ ansible_local.custom.general.state }}"
